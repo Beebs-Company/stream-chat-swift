@@ -25,7 +25,7 @@ extension ChatViewController {
         let cell = tableView.dequeueMessageCell(for: indexPath, style: messageStyle)
         
         if message.isDeleted {
-            cell.update(info: "This message was deleted.", date: message.deleted)
+            cell.update(info: "Ce message a été supprimé.", date: message.deleted)
         } else if message.isEphemeral {
             cell.update(text: message.args ?? "")
         } else {

@@ -22,13 +22,13 @@ extension ChatViewController {
         
         guard InternetConnection.shared.isAvailable else {
             footerView.isHidden = false
-            footerView.textLabel.text = "Waiting for network..."
+            footerView.textLabel.text = "Attente de réseau..."
             return
         }
         
         guard Client.shared.webSocket.isConnected else {
             footerView.isHidden = false
-            footerView.textLabel.text = "Connecting..."
+            footerView.textLabel.text = "Chargement..."
             footerView.activityIndicatorView.startAnimating()
             return
         }

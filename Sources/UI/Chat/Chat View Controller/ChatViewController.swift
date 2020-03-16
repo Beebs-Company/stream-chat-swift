@@ -78,7 +78,7 @@ open class ChatViewController: ViewController, UITableViewDataSource, UITableVie
     
     private(set) lazy var composerEditingContainerView = createComposerEditingContainerView()
     private(set) lazy var composerCommandsContainerView = createComposerCommandsContainerView()
-    private(set) lazy var composerAddFileContainerView = createComposerAddFileContainerView(title: "Add a file")
+    private(set) lazy var composerAddFileContainerView = createComposerAddFileContainerView(title: "Envoyer un fichier")
     
     /// A table view of messages.
     public private(set) lazy var tableView: TableView = {
@@ -310,7 +310,7 @@ extension ChatViewController {
         }
         
         if presenter.parentMessage != nil {
-            title = "Thread"
+            title = "Discussion"
             updateTitleReplyCount()
             return
         }
@@ -323,7 +323,7 @@ extension ChatViewController {
     }
     
     private func updateTitleReplyCount() {
-        guard title == "Thread", let parentMessage = channelPresenter?.parentMessage else {
+        guard title == "Discussion", let parentMessage = channelPresenter?.parentMessage else {
             return
         }
         
@@ -332,7 +332,7 @@ extension ChatViewController {
             return
         }
         
-        let title = parentMessage.replyCount == 1 ? "1 reply" : "\(parentMessage.replyCount) replies"
+        let title = parentMessage.replyCount == 1 ? "1 réponse" : "\(parentMessage.replyCount) réponses"
         let button = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
         button.tintColor = .chatGray
         button.setTitleTextAttributes([.font: UIFont.chatMedium], for: .normal)
