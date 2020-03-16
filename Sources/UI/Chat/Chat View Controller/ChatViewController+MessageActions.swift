@@ -349,7 +349,7 @@ extension ChatViewController {
         }
         
         if messageActions.contains(.copy), let copyAction = copyAction(for: message) {
-            actions.append(UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in copyAction() })
+            actions.append(UIAction(title: "Copier", image: UIImage(systemName: "doc.on.doc")) { _ in copyAction() })
         }
         
         if !message.user.isCurrent {

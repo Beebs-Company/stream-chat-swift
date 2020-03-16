@@ -11,9 +11,9 @@ import Foundation
 /// A chat item type for view elements.
 public enum ChatItem: Equatable {
     /// A title for the yesterday separator.
-    public static var statusYesterdayTitle = "Yesterday"
+    public static var statusYesterdayTitle = "Hier"
     /// A title for the today separator.
-    public static var statusTodayTitle = "Today"
+    public static var statusTodayTitle = "Aujourd'hui"
     
     /// A loading item.
     case loading(_ inProgress: Bool)
