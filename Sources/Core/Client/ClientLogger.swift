@@ -346,7 +346,7 @@ extension DateFormatter {
     public static var log: DateFormatter? = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM HH:mm:ss.SSS"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.locale = Locale(identifier: "fr_FR_POSIX")
         return dateFormatter
     }()
 }

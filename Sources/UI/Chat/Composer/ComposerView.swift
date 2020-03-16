@@ -168,7 +168,7 @@ public extension ComposerView {
     /// - Parameters:
     ///   - view: a superview.
     ///   - placeholderText: a placeholder text.
-    func addToSuperview(_ view: UIView, placeholderText: String = "Write a message") {
+    func addToSuperview(_ view: UIView, placeholderText: String = "Écrire un message") {
         guard let style = style else {
             return
         }
