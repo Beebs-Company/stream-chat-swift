@@ -200,7 +200,7 @@ extension ChannelPresenter {
         guard newMessage.created.isToday, !lastMessage.created.isToday else { return false }
         
         items.append(.status(ChatItem.statusTodayTitle,
-                             "at \(DateFormatter.time.string(from: newMessage.created))",
+                             "à \(DateFormatter.time.string(from: newMessage.created))",
                              false))
         return true
     }
