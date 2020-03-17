@@ -121,16 +121,16 @@ extension ChannelPresenter {
             
             if showStatuses, !yesterdayStatusAdded, message.created.isYesterday {
                 yesterdayStatusAdded = true
-                items.insert(.status(ChatItem.statusYesterdayTitle,
-                                     "at \(DateFormatter.time.string(from: message.created))",
+                items.insert(.status("Hier",
+                                     "à \(DateFormatter.time.string(from: message.created))",
                     false), at: index)
                 index += 1
             }
             
             if showStatuses, !todayStatusAdded, message.created.isToday {
                 todayStatusAdded = true
-                items.insert(.status(ChatItem.statusTodayTitle,
-                                     "at \(DateFormatter.time.string(from: message.created))",
+                items.insert(.status("Aujourd'hui",
+                                     "à \(DateFormatter.time.string(from: message.created))",
                     false), at: index)
                 index += 1
             }
@@ -180,11 +180,11 @@ extension ChannelPresenter {
         
         if isNextPage {
             if yesterdayStatusAdded {
-                removeDuplicatedStatus(statusTitle: ChatItem.statusYesterdayTitle, items: &items)
+                removeDuplicatedStatus(statusTitle: "Hier", items: &items)
             }
             
             if todayStatusAdded {
-                removeDuplicatedStatus(statusTitle: ChatItem.statusTodayTitle, items: &items)
+                removeDuplicatedStatus(statusTitle: "Aujourd'hui", items: &items)
             }
         }
         

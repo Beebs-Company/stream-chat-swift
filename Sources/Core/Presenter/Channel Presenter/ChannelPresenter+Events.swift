@@ -199,7 +199,7 @@ extension ChannelPresenter {
         guard let lastMessage = items.last?.message else { return false }
         guard newMessage.created.isToday, !lastMessage.created.isToday else { return false }
         
-        items.append(.status(ChatItem.statusTodayTitle,
+        items.append(.status("Aujourd'hui",
                              "à \(DateFormatter.time.string(from: newMessage.created))",
                              false))
         return true
