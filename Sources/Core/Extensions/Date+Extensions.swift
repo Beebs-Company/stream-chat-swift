@@ -70,6 +70,7 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         formatter.dateStyle = .none
+        formatter.locale = Locale(identifier: "FR.fr")
         return formatter
     }()
     
@@ -78,6 +79,7 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         formatter.dateStyle = .short
+        formatter.locale = Locale(identifier: "FR.fr")
         return formatter
     }()
     
@@ -86,6 +88,7 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .none
         formatter.dateStyle = .short
+        formatter.locale = Locale(identifier: "FR.fr")
         return formatter
     }()
 
@@ -93,12 +96,14 @@ extension DateFormatter {
     public static let weekDay: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
+        formatter.locale = Locale(identifier: "FR.fr")
         return formatter
     }()
     
     static let fileName: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy_MM_dd_HHmmss"
+        formatter.locale = Locale(identifier: "FR.fr")
         return formatter
     }()
 }
