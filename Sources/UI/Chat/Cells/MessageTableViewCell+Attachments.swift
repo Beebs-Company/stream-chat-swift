@@ -71,7 +71,7 @@ extension MessageTableViewCell {
                                 if let button = button {
                                     preview?.actionsStackView.arrangedSubviews.forEach {
                                         if let button = $0 as? UIButton, let title = button.title(for: .normal) {
-                                            button.isEnabled = title.lowercased() == "cancel"
+                                            button.isEnabled = title.lowercased() == "annuler"
                                         }
                                     }
                                     
