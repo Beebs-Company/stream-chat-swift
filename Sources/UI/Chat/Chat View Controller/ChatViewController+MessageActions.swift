@@ -85,11 +85,11 @@ extension ChatViewController {
             // Mute.
             if messageActions.contains(.muteUser), presenter.channel.config.mutesEnabled {
                 if message.user.isMuted {
-                    alert.addAction(.init(title: "Unmute", style: .default, handler: { [weak self] _ in
+                    alert.addAction(.init(title: "Réactiver les notifications", style: .default, handler: { [weak self] _ in
                         self?.unmute(user: message.user)
                     }))
                 } else {
-                    alert.addAction(.init(title: "Mute", style: .default, handler: { [weak self] _ in
+                    alert.addAction(.init(title: "Mode silencieux", style: .default, handler: { [weak self] _ in
                         self?.mute(user: message.user)
                     }))
                 }
@@ -226,7 +226,7 @@ extension ChatViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 if let backgroundColor = self?.view.backgroundColor {
-                    self?.showBanner("@\(user.name) a été mute", backgroundColor: backgroundColor)
+                    self?.showBanner("Conversation avec @\(user.name) en mode silencieux", backgroundColor: backgroundColor)
                 }
             })
             .disposed(by: disposeBag)
@@ -237,7 +237,7 @@ extension ChatViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 if let backgroundColor = self?.view.backgroundColor {
-                    self?.showBanner("@\(user.name) a été unmute", backgroundColor: backgroundColor)
+                    self?.showBanner("Réactivation des notifications dans la conversation avec @\(user.name)", backgroundColor: backgroundColor)
                 }
             })
             .disposed(by: disposeBag)
