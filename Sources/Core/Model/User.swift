@@ -64,8 +64,8 @@ public struct User: Codable {
     public internal(set) var currentDevice: Device?
     /// Muted users.
     public internal(set) var mutedUsers: [MutedUser]
-    let messagesUnreadCount: Int
-    let channelsUnreadCount: Int
+    public let messagesUnreadCount: Int
+    public let channelsUnreadCount: Int
     
     /// Check if the user is the current user.
     public var isCurrent: Bool {
