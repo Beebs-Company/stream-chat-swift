@@ -240,9 +240,6 @@ public extension Channel {
     /// Ban a user.
     /// - Parameter user: a user.
     func ban(user: User, timeoutInMinutes: Int? = nil, reason: String? = nil) -> Observable<Void> {
-        if isBanned(user) || !banEnabling.isEnabled(for: self) {
-            return .empty()
-        }
         
         let timeoutInMinutes = timeoutInMinutes ?? banEnabling.timeoutInMinutes
         let reason = reason ?? banEnabling.reason
