@@ -125,9 +125,8 @@ extension ChatViewController {
             
             if messageActions.contains(.banUser),
                 let channelPresenter = channelPresenter,
-                channelPresenter.channel.banEnabling.isEnabled(for: channelPresenter.channel),
                 !channelPresenter.channel.isBanned(message.user) {
-                alert.addAction(.init(title: "Bannir", style: .destructive, handler: { [weak self] _ in
+                alert.addAction(.init(title: "Bloquer", style: .destructive, handler: { [weak self] _ in
                     if let channelPresenter = self?.channelPresenter {
                         self?.ban(user: message.user, channel: channelPresenter.channel)
                     }
@@ -292,7 +291,7 @@ extension ChatViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 if let backgroundColor = self?.view.backgroundColor {
-                    self?.showBanner("🙅‍♀️ Bannir: \(user.name)", backgroundColor: backgroundColor)
+                    self?.showBanner("🙅‍♀️ Bloqué: \(user.name)", backgroundColor: backgroundColor)
                 }
             })
             .disposed(by: disposeBag)
@@ -404,7 +403,7 @@ extension ChatViewController {
                 let channelPresenter = channelPresenter,
                 channelPresenter.channel.banEnabling.isEnabled(for: channelPresenter.channel),
                 !channelPresenter.channel.isBanned(message.user) {
-                actions.append(UIAction(title: "Bannir",
+                actions.append(UIAction(title: "Bloquer",
                                         image: UIImage(systemName: "exclamationmark.octagon"),
                                         attributes: [.destructive]) { [weak self] _ in
                     if let channelPresenter = self?.channelPresenter {
