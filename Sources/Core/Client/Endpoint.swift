@@ -240,6 +240,7 @@ extension Endpoint {
     var body: Encodable? {
         switch self {
         case .removeDevice,
+             .unban,
              .search,
              .channels,
              .message,
