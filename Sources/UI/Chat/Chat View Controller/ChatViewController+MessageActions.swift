@@ -401,7 +401,6 @@ extension ChatViewController {
             
             if messageActions.contains(.banUser),
                 let channelPresenter = channelPresenter,
-                channelPresenter.channel.banEnabling.isEnabled(for: channelPresenter.channel),
                 !channelPresenter.channel.isBanned(message.user) {
                 actions.append(UIAction(title: "Bloquer",
                                         image: UIImage(systemName: "exclamationmark.octagon"),
