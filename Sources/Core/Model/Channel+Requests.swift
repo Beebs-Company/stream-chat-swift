@@ -253,6 +253,21 @@ public extension Channel {
                 }
             })
     }
+    
+    func unban(user: User, timeoutInMinutes: Int? = nil, reason: String? = nil) -> Observable<Void> {
+        
+        let timeoutInMinutes = timeoutInMinutes ?? banEnabling.timeoutInMinutes
+        let reason = reason ?? banEnabling.reason
+        let userBan = UserBan(user: user, channel: self, timeoutInMinutes: timeoutInMinutes, reason: reason)
+        let request: Observable<EmptyData> = Client.shared.connectedRequest(.unban(userBan))
+        
+        return request.map({ _ in Void() })
+            .do(onNext: { [weak self] in
+                if timeoutInMinutes == nil {
+                    self?.bannedUsers.append(user)
+                }
+            })
+    }
 }
 
 // MARK: - Invite Requests

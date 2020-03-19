@@ -296,6 +296,17 @@ extension ChatViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    private func unban(user: User, channel: Channel) {
+        channel.unban(user: user)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                if let backgroundColor = self?.view.backgroundColor {
+                    self?.showBanner("🙅‍♀️ Débloqué: \(user.name)", backgroundColor: backgroundColor)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - Context Menu
@@ -355,11 +366,11 @@ extension ChatViewController {
             // Mute.
             if messageActions.contains(.muteUser), presenter.channel.config.mutesEnabled {
                 if message.user.isMuted {
-                    actions.append(UIAction(title: "Unmute", image: UIImage(systemName: "speaker")) { [weak self] _ in
+                    actions.append(UIAction(title: "Réactiver les notifications", image: UIImage(systemName: "speaker")) { [weak self] _ in
                         self?.unmute(user: message.user)
                     })
                 } else {
-                    actions.append(UIAction(title: "Mute", image: UIImage(systemName: "speaker.slash")) { [weak self] _ in
+                    actions.append(UIAction(title: "Mode silencieux", image: UIImage(systemName: "speaker.slash")) { [weak self] _ in
                         self?.mute(user: message.user)
                     })
                 }
@@ -409,7 +420,17 @@ extension ChatViewController {
                         self?.ban(user: message.user, channel: channelPresenter.channel)
                     }
                 })
-            }
+            } else if messageActions.contains(.banUser),
+               let channelPresenter = channelPresenter,
+               channelPresenter.channel.isBanned(message.user) {
+               actions.append(UIAction(title: "Débloquer",
+                                       image: UIImage(systemName: "exclamationmark.octagon"),
+                                       attributes: [.destructive]) { [weak self] _ in
+                   if let channelPresenter = self?.channelPresenter {
+                       self?.unban(user: message.user, channel: channelPresenter.channel)
+                   }
+               })
+           }
         }
         
         if messageActions.contains(.delete), message.canDelete {

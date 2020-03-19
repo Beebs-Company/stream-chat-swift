@@ -107,6 +107,8 @@ public enum Endpoint {
     case unflagUser(User)
     /// Ban a user.
     case ban(UserBan)
+    /// Ban a user.
+    case unban(UserBan)
 }
 
 extension Endpoint {
@@ -114,7 +116,7 @@ extension Endpoint {
         switch self {
         case .search, .channels, .message, .replies, .users, .devices:
             return .get
-        case .removeDevice, .deleteChannel, .deleteMessage, .deleteReaction, .deleteImage, .deleteFile:
+        case .removeDevice, .deleteChannel, .deleteMessage, .deleteReaction, .deleteImage, .deleteFile, .unban:
             return .delete
         default:
             return .post
@@ -196,6 +198,8 @@ extension Endpoint {
             return "moderation/unflag"
         case .ban:
             return "moderation/ban"
+        case .unban:
+            return "moderation/ban"
         case .inviteAnswer(let answer):
             return path(to: answer.channel)
         }
@@ -209,6 +213,8 @@ extension Endpoint {
             return pagination
         case .deleteImage(let url, _), .deleteFile(let url, _):
             return ["url": url]
+        case .unban(let userBan):
+            return userBan
         default:
             return nil
         }
