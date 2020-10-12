@@ -148,33 +148,33 @@ extension UIViewController {
             return
         }
         
-        let WebbViewController = WebbViewController()
-        WebbViewController.url = url
-        WebbViewController.title = title
-        present(WebViewNavigationController(with: WebbViewController), animated: animated)
+        let webbViewController = WebbViewController()
+        webbViewController.url = url
+        webbViewController.title = title
+        present(WebViewNavigationController(with: webbViewController), animated: animated)
     }
 }
 
 private class WebViewNavigationController: UINavigationController {
-    private let WebbViewController: WebbViewController
+    private let webbViewController: WebbViewController
     
-    init(with WebbViewController: WebbViewController) {
-        self.WebbViewController = WebbViewController
-        super.init(rootViewController: WebbViewController)
+    init(with webbViewController: WebbViewController) {
+        self.webbViewController = webbViewController
+        super.init(rootViewController: webbViewController)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.WebbViewController = WebbViewController(nibName: nil, bundle: nil)
+        self.webbViewController = WebbViewController(nibName: nil, bundle: nil)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        WebbViewController = WebbViewController(nibName: nil, bundle: nil)
+        webbViewController = WebbViewController(nibName: nil, bundle: nil)
         super.init(coder: aDecoder)
     }
     
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        WebbViewController.setDocumentMenuViewControllerSoureViewsIfNeeded(viewControllerToPresent)
+        webbViewController.setDocumentMenuViewControllerSoureViewsIfNeeded(viewControllerToPresent)
         super.present(viewControllerToPresent, animated: flag, completion: completion)
     }
 }
