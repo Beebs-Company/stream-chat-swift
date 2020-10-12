@@ -1,5 +1,5 @@
 //
-//  WebViewController.swift
+//  WebbViewController.swift
 //  StreamChat
 //
 //  Created by Alexey Bukhtin on 17/04/2019.
@@ -11,7 +11,7 @@ import WebKit
 import SnapKit
 
 /// A siple web view controller with `WKWebView` and navigation buttons in the navigation bar.
-open class WebViewController: UIViewController, WKNavigationDelegate {
+open class WebbViewController: UIViewController, WKNavigationDelegate {
     
     /// An activity indicator.
     public private(set) lazy var activityIndicatorView = UIActivityIndicatorView(style: .gray)
@@ -125,7 +125,7 @@ open class WebViewController: UIViewController, WKNavigationDelegate {
 
 // MARK: - Edditional Views
 
-extension WebViewController {
+extension WebbViewController {
     private func setupToolbar() {
         let closeButton = UIBarButtonItem(image: UIImage.Icons.close, style: .plain, target: self, action: #selector(close(_:)))
         navigationItem.leftBarButtonItem = closeButton
@@ -142,39 +142,39 @@ extension WebViewController {
 
 extension UIViewController {
     
-    /// Presents the Open Graph data in a `WebViewController`.
+    /// Presents the Open Graph data in a `WebbViewController`.
     public func showWebView(url: URL?, title: String?, animated: Bool = true) {
         guard let url = url else {
             return
         }
         
-        let webViewController = WebViewController()
-        webViewController.url = url
-        webViewController.title = title
-        present(WebViewNavigationController(with: webViewController), animated: animated)
+        let WebbViewController = WebbViewController()
+        WebbViewController.url = url
+        WebbViewController.title = title
+        present(WebViewNavigationController(with: WebbViewController), animated: animated)
     }
 }
 
 private class WebViewNavigationController: UINavigationController {
-    private let webViewController: WebViewController
+    private let WebbViewController: WebbViewController
     
-    init(with webViewController: WebViewController) {
-        self.webViewController = webViewController
-        super.init(rootViewController: webViewController)
+    init(with WebbViewController: WebbViewController) {
+        self.WebbViewController = WebbViewController
+        super.init(rootViewController: WebbViewController)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.webViewController = WebViewController(nibName: nil, bundle: nil)
+        self.WebbViewController = WebbViewController(nibName: nil, bundle: nil)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        webViewController = WebViewController(nibName: nil, bundle: nil)
+        WebbViewController = WebbViewController(nibName: nil, bundle: nil)
         super.init(coder: aDecoder)
     }
     
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        webViewController.setDocumentMenuViewControllerSoureViewsIfNeeded(viewControllerToPresent)
+        WebbViewController.setDocumentMenuViewControllerSoureViewsIfNeeded(viewControllerToPresent)
         super.present(viewControllerToPresent, animated: flag, completion: completion)
     }
 }
