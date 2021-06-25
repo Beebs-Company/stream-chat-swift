@@ -274,11 +274,11 @@ final class CombineSimpleChatViewController: UITableViewController, UITextViewDe
             messageId: message.id
         )
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Supprimer") { _, _, _ in
             messageController.deleteMessage()
         }
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] _, _, _ in
+        let editAction = UIContextualAction(style: .normal, title: "Modifier") { [weak self] _, _, _ in
             self?.showTextEditingAlert(for: message.text) {
                 messageController.editMessage(text: $0)
             }
@@ -328,7 +328,7 @@ final class CombineSimpleChatViewController: UITableViewController, UITextViewDe
             
             // Delete message
             actions.append(UIAction(
-                title: "Delete",
+                title: "Supprimer",
                 image: UIImage(systemName: "trash"),
                 attributes: [.destructive]
             ) { _ in

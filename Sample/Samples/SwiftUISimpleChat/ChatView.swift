@@ -109,7 +109,7 @@ struct ChatView: View {
                     }
                     
                     Button(action: { messageController.deleteMessage() }) {
-                        Text("Delete")
+                        Text("Supprimer")
                         Image(systemName: "trash")
                     }
                 } else {
