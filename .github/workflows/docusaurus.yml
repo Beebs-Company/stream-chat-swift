@@ -1,0 +1,17 @@
+name: Deploy Docusaurus
+
+on:
+  release:
+    types:
+      - created # We only want documentation for released versions
+  workflow_dispatch: # We want to be able to manually deploy too
+
+jobs:
+  deploy-docusaurus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Docusaurus to stream-chat-docusaurus
+        uses: GetStream/push-stream-chat-docusaurus-action@main
+        env:
+          DOCUSAURUS_GH_TOKEN: ${{ secrets.DOCUSAURUS_GH_TOKEN }}
