@@ -137,7 +137,7 @@ open class ChannelsViewController: ViewController {
                                baseColor: style.channel.backgroundColor)
         
         if let lastMessage = channelPresenter.lastMessage {
-            var text = lastMessage.isDeleted ? "Message was deleted" : lastMessage.textOrArgs
+            var text = lastMessage.isDeleted ? "Le message a été supprimé" : lastMessage.textOrArgs
             
             if text.isEmpty, let first = lastMessage.attachments.first {
                 text = first.title.isEmpty ? ((first.url ?? first.imageURL)?.lastPathComponent) ?? "" : first.title
@@ -307,7 +307,7 @@ extension ChannelsViewController: UITableViewDataSource, UITableViewDelegate {
             return false
         }
         
-        return channelPresenter.channel.createdBy?.isCurrent ?? false
+        return deleteChannelBySwipe
     }
     
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
