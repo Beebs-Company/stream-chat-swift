@@ -221,7 +221,15 @@ extension ChannelsPresenter {
             if let index = items.firstIndex(where: cid) {
                 return .itemsUpdated([index], [], items)
             }
-            
+        case .notificationMarkRead(let channel, let unreadCount, _, _):
+            if unreadCount == 0,
+                let channel = channel,
+                let index = items.firstIndex(whereChannelId: channel.id, channelType: channel.type),
+                let channelPresenter = items[index].channelPresenter {
+                channelPresenter.unreadMessageReadAtomic.set(nil)
+                channelPresenter.channel.unreadCountAtomic.set(0)
+                return .itemsUpdated([index], [], items)
+            }
         default:
             break
         }
@@ -252,6 +260,7 @@ extension ChannelsPresenter {
         if let cid = response.cid,
             let index = items.firstIndex(where: cid),
             let channelPresenter = items.remove(at: index).channelPresenter {
+
             channelPresenter.parseEvents(event: response.event)
             items.insert(.channelPresenter(channelPresenter), at: 0)
             
