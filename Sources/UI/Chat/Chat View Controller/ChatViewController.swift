@@ -32,9 +32,11 @@ open class ChatViewController: ViewController, UITableViewDataSource, UITableVie
     }
     
     /// Message actions (see `MessageAction`).
+    @available(iOS 13, *)
     public lazy var useContextMenuForActions = defaultUseContextMenuForActions
     
     /// A default message actions. This is useful for subclasses.
+    @available(iOS 13, *)
     open var defaultUseContextMenuForActions: Bool {
         return true
     }
@@ -288,6 +290,7 @@ open class ChatViewController: ViewController, UITableViewDataSource, UITableVie
     ///   - cell: a message cell.
     ///   - message: a message.
     ///   - locationInView: a tap location in the cell.
+    @available(iOS 13, *)
     open func createActionsContextMenu(from cell: UITableViewCell, for message: Message, locationInView: CGPoint) -> UIMenu? {
         defaultActionsContextMenu(from: cell, for: message, locationInView: locationInView)
     }
