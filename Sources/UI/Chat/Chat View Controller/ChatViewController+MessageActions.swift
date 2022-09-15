@@ -311,7 +311,6 @@ extension ChatViewController {
 
 // MARK: - Context Menu
 
-@available(iOS 13, *)
 extension ChatViewController {
     
     public func tableView(_ tableView: UITableView,
